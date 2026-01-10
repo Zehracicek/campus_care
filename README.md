@@ -28,17 +28,13 @@ erDiagram
     users ||--o{ ratings : gives
     users ||--o{ maintenanceRequests : submits
     users }o--|| departments : "belongs to"
+    users ||--o{ academic_calendars : creates
+    users ||--o{ demirbaslar : creates
     departments ||--o{ personel : employs
     departments ||--o{ demirbaslar : owns
     events ||--o{ comments : receives
     maintenanceRequests ||--o{ comments : receives
     maintenanceRequests ||--o{ ratings : receives
-    maintenanceRequests }o--|| rooms : "located in"
-    maintenanceRequests }o--|| categories : "belongs to"
-    academic_calendars }o--|| users : "created by"
-    events }o--|| users : "created by"
-    announcements }o--|| users : "authored by"
-    demirbaslar }o--|| users : "created by"
     users {
         string id PK
         string email UK
@@ -124,26 +120,14 @@ erDiagram
         string priority
         string status
         string userId FK
-        string roomId FK
-        string categoryId FK
+        string roomId
+        string categoryId
         string locationId
         array photoUrls
         string adminNote
         timestamp createdAt
         timestamp updatedAt
         timestamp completedAt
-    }
-    rooms {
-        string id PK
-        string roomNumber
-        string building
-        string floor
-        string departmentId FK
-    }
-    categories {
-        string id PK
-        string name
-        string description
     }
     demirbaslar {
         string id PK
@@ -152,15 +136,6 @@ erDiagram
         number quantity
         string createdById FK
         string createdAt
-    }
-    notifications {
-        string id PK
-        string userId FK
-        string title
-        string message
-        string type
-        boolean isRead
-        timestamp createdAt
     }
 ```
 
@@ -177,10 +152,7 @@ erDiagram
 | **comments** | Yorumlar | users (N:1), maintenanceRequests (N:1) |
 | **ratings** | Değerlendirmeler | users (N:1), maintenanceRequests (N:1) |
 | **maintenanceRequests** | Bakım talepleri | users (N:1), rooms (N:1), categories (N:1) |
-| **rooms** | Oda/Derslik bilgileri | departments (N:1) |
-| **categories** | Kategori yönetimi | - |
 | **demirbaslar** | Demirbaş/Envanter | users (N:1), departments (N:1) |
-| **notifications** | Bildirimler | users (N:1) |
 
 ### 🔑 Anahtar Özellikler
 
