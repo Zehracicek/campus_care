@@ -211,10 +211,3 @@ npm start
 - React Native / Flutter (Mobile)
 - Node.js (Backend - opsiyonel)
 
-## 📝 Lisans
-
-MIT License
-
-## 👥 Katkıda Bulunanlar
-
-- [İsminiz] - Veritabanı Tasarımı ve Geliştirme
